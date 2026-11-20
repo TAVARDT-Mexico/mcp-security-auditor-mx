@@ -78,7 +78,7 @@ jobs:
 ## Enlaces TAVARDT
 
 - **Portal Institucional**: [https://ag.tavardt.com/mx/](https://ag.tavardt.com/mx/)
-- **Centro de Herramientas TAVARDT**: [https://tools.tavardt.com/mx/](https://tools.tavardt.com/mx/)
+- **Centro de Herramientas**: [https://tools.tavardt.com/mx/](https://tools.tavardt.com/mx/)
 - **Contacto Técnico**: [https://ag.tavardt.com/mx/contacto/](https://ag.tavardt.com/mx/contacto/)
 
 ---
