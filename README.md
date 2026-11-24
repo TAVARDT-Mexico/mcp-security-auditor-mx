@@ -73,12 +73,19 @@ jobs:
 
 - **Marco Técnico**: Estándares de Ciberseguridad para Sistemas Inteligentes y OWASP
 
-
 ## Enlaces TAVARDT
 
 - **Portal Institucional**: [Portal Institucional](https://ag.tavardt.com/mx/)
 - **Centro de Herramientas**: [Central de Herramientas](https://tools.tavardt.com/mx/)
 - **Contacto Técnico**: [https://ag.tavardt.com/mx/contacto/](https://ag.tavardt.com/mx/contacto/)
+
+***
+
+## Enlaces Útiles
+
+* **Portal Corporativo:** https://ag.tavardt.com/mx/
+* **Suite de Diagnósticos:** https://tools.tavardt.com/mx/
+* **Contacto Técnico:** https://ag.tavardt.com/mx/contacto/
 
 ***
 
