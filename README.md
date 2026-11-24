@@ -72,12 +72,12 @@ jobs:
 ## Referenciales y Conformidad
 
 - **Marco Técnico**: Estándares de Ciberseguridad para Sistemas Inteligentes y OWASP
-- **Organización**: [TAVARDT-Mexico](https://github.com/TAVARDT-Mexico)
+
 
 ## Enlaces TAVARDT
 
 - **Portal Institucional**: [Portal Institucional](https://ag.tavardt.com/mx/)
-- **Centro de Herramientas**: [Central de Ferramentas](https://tools.tavardt.com/mx/)
+- **Centro de Herramientas**: [Central de Herramientas](https://tools.tavardt.com/mx/)
 - **Contacto Técnico**: [https://ag.tavardt.com/mx/contacto/](https://ag.tavardt.com/mx/contacto/)
 
 ***
