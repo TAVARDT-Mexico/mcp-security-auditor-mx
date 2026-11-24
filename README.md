@@ -71,7 +71,6 @@ jobs:
 
 ## Referenciales y Conformidad
 
-- **Jurisdicción**: México
 - **Marco Técnico**: Estándares de Ciberseguridad para Sistemas Inteligentes y OWASP
 - **Organización**: [TAVARDT-Mexico](https://github.com/TAVARDT-Mexico)
 
@@ -85,3 +84,7 @@ jobs:
 
 ### Licencia
 Distribuido bajo términos de la licencia MIT. Revise el archivo [LICENSE](LICENSE) para más información.
+
+***
+
+© 2026 TAVARDT. Todos los derechos reservados.
