@@ -2,14 +2,14 @@
 
 [![Live Demo](https://img.shields.io/badge/GitHub%20Pages-Live%20Demo-06b6d4?style=for-the-badge)](https://tavardt-mexico.github.io/mcp-security-auditor-mx/)
 [![Standard](https://img.shields.io/badge/Standard-OWASP%20LLM-3b82f6?style=for-the-badge)](https://tavardt-mexico.github.io/mcp-security-auditor-mx/)
-[![Privacy](https://img.shields.io/badge/Privacy-100%25%20Client--Side-10b981?style=for-the-badge)](https://tavardt-mexico.github.io/mcp-security-auditor-mx/)
+[![Privacy](https://img.shields.io/badge/Privacy-100%25%20Client-Side-10b981?style=for-the-badge)](https://tavardt-mexico.github.io/mcp-security-auditor-mx/)
 [![License](https://img.shields.io/badge/License-MIT-slate?style=for-the-badge)](LICENSE)
 
 Auditor de seguridad para servidores y herramientas MCP en plataformas con inteligencia artificial. Aplicación web y CLI.
 
 Desarrollado para organizaciones e ingenieros en **México**, este repositorio provee una suite práctica para inspeccionar y blindar configuraciones del **Model Context Protocol (MCP)** en sistemas impulsados por inteligencia artificial.
 
----
+***
 
 ## Modos de Operación
 
@@ -23,19 +23,19 @@ Para validaciones automáticas en pipelines de CI/CD o revisiones locales:
 
 ```bash
 # Análisis de archivo de configuración
-python mcp_security_scanner.py --file mcp.json
+python mcp_security_scanner.py -file mcp.json
 
 # Modo estricto para pipelines (falla con código 1 si hay riesgos)
-python mcp_security_scanner.py --file mcp.json --strict
+python mcp_security_scanner.py -file mcp.json -strict
 
 # Creación de archivo con configuración blindada
-python mcp_security_scanner.py --file mcp.json --harden mcp-hardened.json
+python mcp_security_scanner.py -file mcp.json -harden mcp-hardened.json
 
 # Generación de reporte en JSON
-python mcp_security_scanner.py --file mcp.json --json
+python mcp_security_scanner.py -file mcp.json -json
 ```
 
----
+***
 
 ## Vectores de Seguridad Evaluados
 
@@ -45,7 +45,7 @@ python mcp_security_scanner.py --file mcp.json --json
 4. **Cadena de Suministro**: Fijación estricta de versiones en paquetes descargados dinámicamente (`npx`, `uvx`).
 5. **Bloqueo de SSRF**: Prevención de consultas hacia interfaces locales y servicios internos no autorizados.
 
----
+***
 
 ## Integración en GitHub Actions
 
@@ -64,10 +64,10 @@ jobs:
           python-version: '3.11'
       - name: Ejecutar Auditoría MCP
         run: |
-          python mcp_security_scanner.py --file config/mcp.json --strict
+          python mcp_security_scanner.py -file config/mcp.json -strict
 ```
 
----
+***
 
 ## Referenciales y Conformidad
 
@@ -77,11 +77,11 @@ jobs:
 
 ## Enlaces TAVARDT
 
-- **Portal Institucional**: [https://ag.tavardt.com/mx/](https://ag.tavardt.com/mx/)
-- **Centro de Herramientas**: [https://tools.tavardt.com/mx/](https://tools.tavardt.com/mx/)
+- **Portal Institucional**: [Portal Institucional](https://ag.tavardt.com/mx/)
+- **Centro de Herramientas**: [Central de Ferramentas](https://tools.tavardt.com/mx/)
 - **Contacto Técnico**: [https://ag.tavardt.com/mx/contacto/](https://ag.tavardt.com/mx/contacto/)
 
----
+***
 
 ### Licencia
 Distribuido bajo términos de la licencia MIT. Revise el archivo [LICENSE](LICENSE) para más información.
