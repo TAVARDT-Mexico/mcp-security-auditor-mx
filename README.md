@@ -2,7 +2,7 @@
 
 [![Live Demo](https://img.shields.io/badge/Live%20Demo-GitHub%20Pages-5b3cf5.svg)](https://tavardt-mexico.github.io/mcp-security-auditor-mx/)
 [![Python](https://img.shields.io/badge/Python-3.8%2B-blue.svg)](https://www.python.org/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)](LICENSE)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
 Auditor de seguridad para servidores y herramientas MCP en plataformas con inteligencia artificial. Aplicación web y CLI.
 
@@ -89,7 +89,7 @@ jobs:
 ***
 
 ### Licencia
-Distribuido bajo términos de la licencia MIT. Revise el archivo [LICENSE](LICENSE) para más información.
+Distribuido bajo términos de la licencia MIT.
 
 ***
 
