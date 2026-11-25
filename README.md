@@ -4,79 +4,79 @@
 [![Python](https://img.shields.io/badge/Python-3.8%2B-blue.svg)](https://www.python.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
-Auditor de seguridad para servidores y herramientas MCP en plataformas con inteligencia artificial. Aplicación web y CLI.
+***
 
-Desarrollado para organizaciones e ingenieros en **México**, este repositorio provee una suite práctica para inspeccionar y blindar configuraciones del **Model Context Protocol (MCP)** en sistemas impulsados por inteligencia artificial.
+Auditor de seguridad de configuración y motor automatizado de blindaje para servidores Model Context Protocol (MCP) y agentes de IA desarrollado por **TAVARDT**. Inspecciona archivos de configuración frente a intérpretes de shell directos, montajes de discos peligrosos, credenciales en texto plano, dependencias no fijadas y vectores SSRF hacia metadatos de nube.
 
 ***
 
-## Modos de Operación
+## Capacidades Principales y Arquitectura Defensiva
 
-### 1. Aplicación Web en Navegador (GitHub Pages)
-Acceda a la versión gráfica interactiva desde cualquier navegador web:
-- **Enlace Oficial**: [https://tavardt-mexico.github.io/mcp-security-auditor-mx/](https://tavardt-mexico.github.io/mcp-security-auditor-mx/)
-- **Privacidad Total**: Procesamiento en el motor JavaScript local. Ningún archivo o credencial se remite a servidores externos.
+* **Verificación de Privilegio Mínimo**: Evalúa las definiciones de servidores en clientes de IA frente a límites estrictos de seguridad de confianza cero.
+* **Blindaje Automatizado de Configuraciones**: Produce manifiestos corregidos que encapsulan shells en contenedores seguros y trasladan credenciales a variables de entorno.
+* **Integración Flexible en Canales CI/CD**: Funciona como auditor local de terminal, control de calidad automatizado con códigos de salida estrictos o generador de informes JSON.
 
-### 2. Herramienta de Línea de Comandos (CLI)
-Para validaciones automáticas en pipelines de CI/CD o revisiones locales:
+***
+
+## Vectores de Riesgo e Impacto Operacional
+
+Las configuraciones permisivas de servidores MCP exponen el sistema anfitrión y la información local a movimientos laterales, sustracción de datos y ejecución remota no autorizada. El escáner intercepta seis vectores de riesgo para salvaguardar entornos de agentes de inteligencia artificial:
+
+* **Invocación Directa de Intérpretes de Shell (`Ejecución de Comandos`)**: Identifica intérpretes como bash, powershell o cmd ejecutándose sin aislamiento de contenedores (-35 puntos de penalización, CRÍTICO).
+* **Parámetros de Ejecución Dinámica de Código (`Ejecución de Comandos`)**: Detecta modificadores de evaluación arbitraria como -c, /c, invoke-expression o funciones eval (-25 puntos de penalización, CRÍTICO).
+* **Montajes de Raíz y Rutas Críticas (`Acceso al Sistema de Archivos`)**: Bloquea montajes completos del almacenamiento local (-35 puntos) y accesos a claves SSH, credenciales AWS y archivos del sistema operativo (-30 puntos de penalización, CRÍTICO).
+* **Credenciales de Base de Datos y Claves de API (`Secretos Expuestos`)**: Detecta contraseñas y claves privadas almacenadas en texto plano sin variables de entorno (-20 puntos de penalización, ALTO).
+* **Accesos SSRF hacia Servicios de Metadatos (`Seguridad de Red`)**: Neutraliza argumentos dirigidos a puntos de enlace internos y metadatos de infraestructura cloud (-20 puntos de penalización, ALTO).
+* **Ejecución de Paquetes Remotos sin Versión Bloqueada (`Seguridad de Cadena de Suministro`)**: Detecta invocaciones npx, uvx o pipx sin etiquetas inmutables de versión (-10 puntos de penalización, MEDIO).
+
+La puntuación inicial parte de 100 puntos y se reduce en función de cada anomalía confirmada. Cero hallazgos certifica la conformidad con las directrices de mínimo privilegio, mientras que desviaciones críticas detienen los procesos de integración.
+
+***
+
+## Instalación y Ejecución CLI
+
+Audite configuraciones localmente o configure barreras de validación en flujos automatizados con Python:
 
 ```bash
-# Análisis de archivo de configuración
-python mcp_security_scanner.py -file mcp.json
+# Clonar el repositorio oficial
+git clone https://github.com/TAVARDT-Mexico/mcp-security-auditor-mx.git
 
-# Modo estricto para pipelines (falla con código 1 si hay riesgos)
-python mcp_security_scanner.py -file mcp.json -strict
+# Acceder al directorio del proyecto
+cd mcp-security-auditor-mx
 
-# Creación de archivo con configuración blindada
-python mcp_security_scanner.py -file mcp.json -harden mcp-hardened.json
+# Auditar un archivo de configuración MCP
+python mcp_security_scanner.py -f mcp.json
 
-# Generación de reporte en JSON
-python mcp_security_scanner.py -file mcp.json -json
+# Validar en modo estricto
+python mcp_security_scanner.py -f mcp.json -s
+
+# Generar configuración blindada y exportar reporte JSON
+python mcp_security_scanner.py -f mcp.json -o hardened_mcp.json -j
 ```
 
 ***
 
-## Vectores de Seguridad Evaluados
+## Preguntas Frecuentes Técnicas
 
-1. **Alcance en Sistema de Archivos**: Detección de accesos a directorios raíz (`/`, `C:\`) o carpetas sensibles del sistema.
-2. **Ejecución Arbitraria de Comandos**: Restricción de shells directos (`bash`, `sh`, `powershell`, `cmd`) y comandos dinámicos.
-3. **Exposición de Secretos**: Protección de llaves de API, tokens privados y credenciales de bases de datos.
-4. **Cadena de Suministro**: Fijación estricta de versiones en paquetes descargados dinámicamente (`npx`, `uvx`).
-5. **Bloqueo de SSRF**: Prevención de consultas hacia interfaces locales y servicios internos no autorizados.
+### ¿Qué vectores de vulnerabilidad evalúa el auditor en configuraciones de servidores MCP?
 
-***
+La herramienta inspecciona manifiestos frente a invocación directa de intérpretes shell, parámetros de comando dinámicos, montaje de sistemas de archivos raíz, credenciales expuestas, dependencias sin versión fija e intentos de SSRF hacia metadatos de nube. Cada desviación detectada aplica deducciones ponderadas sobre una puntuación inicial de 100 puntos.
 
-## Integración en GitHub Actions
+### ¿Cómo mitiga el escáner los riesgos de elevación de privilegios en el acceso a discos?
 
-```yaml
-name: MCP Security Gate
-on: [push, pull_request]
+El auditor cataloga como críticas las vinculaciones a la raíz del sistema de archivos y el acceso a rutas sensibles como claves SSH, credenciales AWS y directorios del sistema operativo. La corrección ejecutada con la opción -o restringe automáticamente los directorios hacia volúmenes aislados según el principio de privilegio mínimo.
 
-jobs:
-  audit-mcp:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - name: Instalar Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.11'
-      - name: Ejecutar Auditoría MCP
-        run: |
-          python mcp_security_scanner.py -file config/mcp.json -strict
-```
+### ¿Por qué las opciones dinámicas como -c o expresiones de evaluación se consideran críticas?
 
-***
+La presencia de argumentos dinámicos permite que modelos de lenguaje o entradas adversarias evalúen comandos arbitrarios directamente sobre el entorno anfitrión. Bloquear estos parámetros asegura que las herramientas funcionen exclusivamente con binarios predeterminados y esquemas de entrada validados.
 
-## Referenciales y Conformidad
+### ¿De qué manera la función de blindaje automatizado protege secretos y credenciales en texto plano?
 
-- **Marco Técnico**: Estándares de Ciberseguridad para Sistemas Inteligentes y OWASP
+La rutina de auto-harden mediante el parámetro -o sustituye cadenas de conexión a bases de datos y tokens privados por referencias parametrizadas a variables de entorno del sistema. Esta sustitución evita la exposición involuntaria de contraseñas confidenciales en repositorios de control de versiones o registros de agentes.
 
-## Enlaces TAVARDT
+### ¿Puede implementarse el auditor para control de calidad en flujos de integración continua CI/CD?
 
-- **Portal Institucional**: [Portal Institucional](https://ag.tavardt.com/mx/)
-- **Centro de Herramientas**: [Central de Herramientas](https://tools.tavardt.com/mx/)
-- **Contacto Técnico**: [https://ag.tavardt.com/mx/contacto/](https://ag.tavardt.com/mx/contacto/)
+La interfaz CLI procesa archivos locales mediante el parámetro -f y dispone de un modo estricto activable con la opción -s para detener la ejecución con código de error 1 ante cualquier fallo. Junto con la salida estructurada -j, permite bloquear de forma automatizada cualquier compilación que vulnere los umbrales de seguridad.
 
 ***
 
@@ -89,7 +89,7 @@ jobs:
 ***
 
 ### Licencia
-Distribuido bajo términos de la licencia MIT.
+Distribuido bajo la Licencia MIT. Consulte [LICENSE](LICENSE) para más detalles.
 
 ***
 
